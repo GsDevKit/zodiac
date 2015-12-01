@@ -8,6 +8,6 @@ primitiveSSL: sslHandle connect: srcbuf startingAt: start count: length into: ds
 		= -1  More input is required
 		< -1  Other errors"
 	
-	<primitive: 'primitiveConnect' module: 'SqueakSSL'>
+	"<primitive: 'primitiveConnect' module: 'SqueakSSL'>"
 	
 	^ self primitiveFailed

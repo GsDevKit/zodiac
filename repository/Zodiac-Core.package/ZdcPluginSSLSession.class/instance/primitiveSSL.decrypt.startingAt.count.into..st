@@ -3,6 +3,6 @@ primitiveSSL: sslHandle decrypt: srcbuf startingAt: start count: length into: ds
 	"Primitive. Takes incoming data for decryption and continues to decrypt data.
 	Returns the number of bytes produced in the output"
 
-	<primitive: 'primitiveDecrypt' module: 'SqueakSSL'>
+	"<primitive: 'primitiveDecrypt' module: 'SqueakSSL'>"
 	
 	^ self primitiveFailed

@@ -16,4 +16,9 @@ baseline: spec
         group: 'Tests' with: #('Zodiac-Tests');
         yourself ].
   spec for: #'pharo' do: [  ].
-  spec for: #'gemstone' do: [  ]
+  spec
+    for: #'gemstone'
+    do: [ 
+      spec
+        package: 'Zodiac-GemStone-Core' with: [ spec requires: 'Zodiac-Core' ];
+        yourself ]

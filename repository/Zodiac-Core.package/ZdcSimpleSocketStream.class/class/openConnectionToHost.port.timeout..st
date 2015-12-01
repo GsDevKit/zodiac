@@ -1,7 +1,7 @@
 instance creation
 openConnectionToHost: hostIP port: portNumber timeout: timeout
   | platformSocket |
-  platformSocket := GsSocket newTCP.
+  platformSocket := GsSecureSocket newClient.
   ^ (self on: platformSocket)
     timeout: timeout;
     connectTo: hostIP port: portNumber;

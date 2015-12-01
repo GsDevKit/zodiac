@@ -1,0 +1,11 @@
+{
+	"class" : {
+		 },
+	"instance" : {
+		"closeAndDestroy" : "dkh 12/01/2015 14:03",
+		"connectTo:port:waitForConnectionFor:" : "dkh 12/01/2015 14:34",
+		"isValid" : "dkh 12/01/2015 14:03",
+		"listenOn:backlogSize:" : "dkh 12/01/2015 14:06",
+		"localPort" : "dkh 12/01/2015 14:03",
+		"sendSomeData:startIndex:count:" : "dkh 12/01/2015 14:35",
+		"writeFrom:startingAt:for:" : "dkh 12/01/2015 14:39" } }

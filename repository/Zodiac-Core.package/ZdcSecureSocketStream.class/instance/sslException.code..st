@@ -4,4 +4,4 @@ sslException: text code: code
 		(String streamContents: [ :stream |
 			stream << 'SSL Exception: ' << text << ' [code:'.
 			stream print: code.
-			stream << ']' ]) 
+			stream << ']' ])

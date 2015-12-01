@@ -17,4 +17,4 @@ testPlain
 	] ensure: [ stream close ].
 	self assert: (response includesSubstring: '200 OK').      
 	self assert: (response includesSubstring: 'Google').
-	self assert: (response includesSubstring: 'Smalltalk').      
+	self assert: (response includesSubstring: 'Smalltalk').

@@ -1,0 +1,14 @@
+{
+	"category" : "BaselineOfZodiac",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BaselineOfZodiac",
+	"pools" : [
+		 ],
+	"super" : "BaselineOf",
+	"type" : "normal" }

@@ -36,7 +36,7 @@
 		"skip:" : "SvenVanCaekenberghe 5/17/2011 18:52",
 		"socket" : "SvenVanCaekenberghe 5/17/2011 18:52",
 		"socketClose" : "SvenVanCaekenberghe 5/18/2013 21:26",
-		"socketConnectTo:port:" : "SvenVanCaekenberghe 5/20/2011 13:04",
+		"socketConnectTo:port:" : "dkh 12/01/2015 20:08",
 		"socketIsConnected" : "SvenVanCaekenberghe 3/18/2014 14:19",
 		"socketIsDataAvailable" : "SvenVanCaekenberghe 5/20/2011 12:59",
 		"socketReceiveDataInto:startingAt:count:" : "SvenVanCaekenberghe 5/20/2011 12:56",

@@ -1,7 +1,7 @@
 private
 serverSocketOn: port
   | socket |
-  (socket := GsSecureSocket newServer)
+  (socket := GsSocket newTCP)
     option: 'NODELAY' put: true;
     option: 'SNDBUF' put: self socketBufferSize;
     option: 'RCVBUF' put: self socketBufferSize.

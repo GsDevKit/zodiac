@@ -13,8 +13,9 @@ waitForConnectionFor: timeoutSeconds ifTimedOut: timeoutBlock
       | certError errorString |
       certError := aSocket class fetchLastCertificateVerificationErrorForServer.
       errorString := aSocket fetchLastIoErrorString asString.
-      aSocket close.
+      [ 
       certError
         ifNil: [ self error: 'accept error: ' , errorString ]
-        ifNotNil: [ self error: 'Cert error: =>' , certError , ' : ' , errorString ] ].
+        ifNotNil: [ self error: 'Cert error: =>' , certError , ' : ' , errorString ] ]
+        ensure: [ aSocket close ] ].
   ^ aSocket

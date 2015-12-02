@@ -1,6 +1,6 @@
 {
 	"class" : {
-		 },
+		"newTCP" : "dkh 12/02/2015 15:03" },
 	"instance" : {
 		"closeAndDestroy" : "dkh 12/01/2015 14:03",
 		"connectTo:port:waitForConnectionFor:" : "dkh 12/01/2015 14:34",

@@ -1,8 +1,8 @@
 {
 	"class" : {
-		"openConnectionToHost:port:" : "dkh 12/01/2015 14:14",
-		"openConnectionToHost:port:timeout:" : "dkh 12/01/2015 14:14",
-		"openConnectionToHostNamed:port:" : "dkh 12/01/2015 14:18" },
+		"openConnectionToHost:port:" : "dkh 12/02/2015 15:04",
+		"openConnectionToHost:port:timeout:" : "dkh 12/02/2015 15:04",
+		"openConnectionToHostNamed:port:" : "dkh 12/02/2015 15:04" },
 	"instance" : {
 		"atEnd" : "SvenVanCaekenberghe 7/12/2012 16:25",
 		"connectTo:port:" : "SvenVanCaekenberghe 5/20/2011 13:07",

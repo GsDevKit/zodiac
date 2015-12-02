@@ -9,7 +9,8 @@ connectTo: hostAddress port: portNumber waitForConnectionFor: timeOutSeconds
       | certError errorString |
       certError := GsSecureSocket fetchLastCertificateVerificationErrorForClient.
       errorString := self fetchLastIoErrorString asString.
-      self close.
+      [ 
       certError
         ifNil: [ self error: errorString ]
         ifNotNil: [ self error: 'Cert error: =>' , certError , ' : ' , errorString ] ]
+        ensure: [ self close ] ]

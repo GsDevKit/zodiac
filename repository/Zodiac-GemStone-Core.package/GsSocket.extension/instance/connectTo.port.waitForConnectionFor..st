@@ -1,10 +1,13 @@
 *zodiac-gemstone-core
 connectTo: hostAddress port: portNumber waitForConnectionFor: timeOutSeconds
-  (self connectTo: portNumber on: hostAddress timeoutMs: timeOutSeconds * 1000)
+  | theAddress |
+  theAddress := hostAddress.
+  (hostAddress isKindOf: ByteArray)
+    ifTrue: [ 
+      theAddress := ''.
+      1 to: hostAddress size - 1 do: [ :index | theAddress := theAddress , (hostAddress at: index) printString , '.' ].
+      theAddress := theAddress , (hostAddress at: hostAddress size) printString ].
+  (self connectTo: portNumber on: theAddress timeoutMs: timeOutSeconds * 1000)
     ifFalse: [ 
       self close.
-      self
-        halt:
-          'Unable to connect to port ' , portNumber asString
-            ,
-              '. Wait 30 seconds or so, then ensure serverExample is started first.' ]
+      self halt: 'Unable to connect to port ' , portNumber asString ]

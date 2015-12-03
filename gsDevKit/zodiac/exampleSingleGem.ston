@@ -2,15 +2,21 @@ TDScriptLeafNode{#name:'exampleSingleGem',#contents:'[ :topez :objIn :tokens :co
   | opts args |
   \"for help: ./exampleSingleGem -h\"
   command
-    getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+    getOptsMixedLongShort:
+      {#(\'help\' $h #\'none\').
+      #(\'past\' nil #\'none\')}
     optionsAndArguments: [ :options :operands | 
       opts := options.
       args := operands ].
   opts
     at: \'help\'
     ifAbsent: [ 
-      | portNum |
+      | portNum readPastEnd |
       portNum := 57785.
+      opts
+        at: \'past\'
+        ifPresent: [ :ignored | readPastEnd := true ]
+        ifAbsent: [ readPastEnd := false ].
       [ 
       | listener sslServer failBlock classFailBlock bigStr result data dataSizeString |
       failBlock := [ :sock :shouldLog | 
@@ -156,7 +162,7 @@ TDScriptLeafNode{#name:'exampleSingleGem',#contents:'[ :topez :objIn :tokens :co
       sslServer close.
       listener close ]
         fork.
-Processor yield.
+      Processor yield.
       [ 
       | sslClient failBlock bytesRead dataBuffer dataLength data |
       failBlock := [ :sock :shouldLog | 
@@ -276,6 +282,14 @@ Processor yield.
         cr;
         show:
             \'Finished reading, read \' , dataBuffer size asString , \' bytes from peer\'.
+      readPastEnd
+        ifTrue: [ | buf amt |
+buf := String new.
+amt := sslClient
+            read: 10
+            into: buf
+            startingAt: buf size + 1.
+self halt. ].
       sslClient close.
       data := (PassiveObject newWithContents: dataBuffer) activate.
       Transcript
@@ -290,10 +304,16 @@ Processor yield.
           \'NAME
   exampleSingleGem - exampleSingleGem script utility template
 SYNOPSIS
-  exampleSingleGem [-h|--help]
+  exampleSingleGem [-h|--help] [--past]
 DESCRIPTION
+  Single gem implementation of GsSecureSocket client/server example.
+
+  With the --past option set, the code will attempt to read after expected byte count.
+
 EXAMPLES
   ./exampleSingleGem --help
   ./exampleSingleGem -h
+
+  ./exampleSingleGem --past
 \'
-        topez: topez ] ]',#creationTime:DateAndTime['2015-12-02T14:10:20.21150207519531-08:00'],#modificationTime:DateAndTime['2015-12-02T14:32:10.80615997314453-08:00']}
+        topez: topez ] ]',#creationTime:DateAndTime['2015-12-02T14:10:20.21150207519531-08:00'],#modificationTime:DateAndTime['2015-12-03T15:09:31.94263601303101-08:00']}

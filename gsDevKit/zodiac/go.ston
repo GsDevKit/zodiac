@@ -1,0 +1,7 @@
+TDTopezLeafNode{#name:'go',#contents:'test class ZdcSecureSocketStreamTests
+project browse --classes Zodiac
+browse class --hier --exact GsSocket
+# browse class --hier --exact ZdcSimpleSocketStreamTests
+project list
+cd /home/zodiac
+',#creationTime:DateAndTime['2015-12-01T14:47:19.1088299751281-08:00'],#modificationTime:DateAndTime['2015-12-02T16:03:21.39494609832764-08:00']}

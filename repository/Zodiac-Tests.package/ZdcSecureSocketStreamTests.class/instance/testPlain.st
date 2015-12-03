@@ -3,17 +3,6 @@ testPlain
   | query stream request response |
   query := 'Smalltalk'.
   GsSecureSocket disableCertificateVerificationOnClient.
-  false
-    ifTrue: [ 
-      GsSecureSocket
-        useCACertificateFileForClients:
-          '$GEMSTONE/examples/openssl/certs/serverCA.pem'.
-      GsSecureSocket
-        useClientCertificateFile:
-          '$GEMSTONE/examples/openssl/certs/servercert.pem'
-        withPrivateKeyFile:
-          '$GEMSTONE/examples/openssl/certs/serverkey_NO_PASS.pem'
-        privateKeyPassphrase: nil ].
   stream := ZdcSecureSocketStream
     openConnectionToHostNamed: 'encrypted.google.com'
     port: 443.

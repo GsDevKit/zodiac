@@ -2,6 +2,10 @@ tests
 testPlain
   | query stream request response |
   query := 'Smalltalk'.
+  GsSecureSocket
+    useCACertificateFileForClients:
+      '$GEMSTONE/examples/openssl/certs/serverCAcert.pem'.
+  GsSecureSocket enableCertificateVerificationOnClient.
   stream := ZdcSecureSocketStream
     openConnectionToHostNamed: 'encrypted.google.com'
     port: 443.

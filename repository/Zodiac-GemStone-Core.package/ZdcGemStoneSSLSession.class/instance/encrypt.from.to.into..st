@@ -5,4 +5,4 @@ encrypt: srcBuf from: start to: stop into: ignored
   "Primitive. Encrypts the incoming buffer into the result buffer.
 	Returns the number of bytes produced as a result"
 
-  ^ self secureSocket writeFrom: srcBuf startingAt: start for: stop - start
+  ^ self secureSocket writeFrom: srcBuf startingAt: start for: stop - start + 1

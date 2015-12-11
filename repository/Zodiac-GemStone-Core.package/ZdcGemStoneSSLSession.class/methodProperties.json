@@ -2,17 +2,10 @@
 	"class" : {
 		 },
 	"instance" : {
-		"accept:from:to:into:" : "dkh 12/02/2015 16:14",
-		"certNameForClient" : "dkh 12/02/2015 16:55",
-		"certificateName" : "dkh 12/02/2015 16:51",
-		"certificateName:" : "dkh 12/02/2015 16:45",
-		"certificateVerificationState" : "dkh 12/02/2015 16:15",
 		"connect:from:to:into:" : "dkh 12/02/2015 19:53",
 		"decrypt:from:to:into:" : "dkh 12/02/2015 20:18",
-		"destroy" : "dkh 12/02/2015 16:15",
+		"destroy" : "dkh 12/11/2015 14:28",
 		"encrypt:from:to:into:" : "dkh 12/03/2015 16:18",
-		"isConnected" : "dkh 12/02/2015 16:15",
-		"peerCertificateName" : "dkh 12/02/2015 16:15",
+		"isConnected" : "dkh 12/11/2015 14:24",
 		"secureSocket" : "dkh 12/02/2015 16:31",
-		"secureSocket:" : "dkh 12/02/2015 16:35",
-		"sslState" : "dkh 12/02/2015 16:15" } }
+		"secureSocket:" : "dkh 12/02/2015 16:35" } }

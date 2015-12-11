@@ -283,20 +283,18 @@ TDScriptLeafNode{#name:'exampleSingleGem',#contents:'[ :topez :objIn :tokens :co
         show:
             \'Finished reading, read \' , dataBuffer size asString , \' bytes from peer\'.
       readPastEnd
-        ifTrue: [ | buf amt |
-buf := String new.
-amt := sslClient
-            read: 10
-            into: buf
-            startingAt: buf size + 1.
-self halt. ].
+        ifTrue: [ 
+          | buf amt |
+          buf := String new.
+          amt := sslClient read: 10 into: buf startingAt: buf size + 1.
+          self halt ].
       sslClient close.
       data := (PassiveObject newWithContents: dataBuffer) activate.
       Transcript
         cr;
         show:
             \'Result is \' , data class asString , \' of size \' , data size asString.
-      ^ true ]
+      ]
         value ]
     ifPresent: [ :ignored | 
       TDManPage
@@ -316,4 +314,4 @@ EXAMPLES
 
   ./exampleSingleGem --past
 \'
-        topez: topez ] ]',#creationTime:DateAndTime['2015-12-02T14:10:20.21150207519531-08:00'],#modificationTime:DateAndTime['2015-12-03T15:09:31.94263601303101-08:00']}
+        topez: topez ] ]',#creationTime:DateAndTime['2015-12-02T14:10:20.21150207519531-08:00'],#modificationTime:DateAndTime['2015-12-04T11:22:36.83810901641846-08:00']}

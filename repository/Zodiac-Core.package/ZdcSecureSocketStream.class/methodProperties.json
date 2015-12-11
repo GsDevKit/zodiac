@@ -3,7 +3,7 @@
 		"socketClass" : "dkh 12/02/2015 16:24" },
 	"instance" : {
 		"accept" : "SvenVanCaekenberghe 7/12/2012 15:10",
-		"atEnd" : "SvenVanCaekenberghe 7/12/2012 23:08",
+		"atEnd" : "dkh 12/11/2015 14:27",
 		"close" : "SvenVanCaekenberghe 6/3/2013 19:46",
 		"connect" : "SvenVanCaekenberghe 7/12/2012 15:10",
 		"fillBytes:startingAt:count:" : "SvenVanCaekenberghe 7/12/2012 23:01",
@@ -13,7 +13,7 @@
 		"initialize" : "SvenVanCaekenberghe 5/18/2011 16:00",
 		"initializeBuffers" : "SvenVanCaekenberghe 8/23/2012 11:21",
 		"isConnected" : "SvenVanCaekenberghe 5/18/2011 11:49",
-		"isDataAvailable" : "SvenVanCaekenberghe 8/23/2012 11:26",
+		"isDataAvailable" : "dkh 12/11/2015 14:27",
 		"readEncryptedBytes:startingAt:count:" : "SvenVanCaekenberghe 7/12/2012 15:09",
 		"resetEncryptedBuffers" : "SvenVanCaekenberghe 5/18/2011 11:49",
 		"sslException:code:" : "SvenVanCaekenberghe 5/18/2011 11:49",

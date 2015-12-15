@@ -4,7 +4,7 @@
 	"instance" : {
 		"connect:from:to:into:" : "dkh 12/02/2015 19:53",
 		"decrypt:from:to:into:" : "dkh 12/02/2015 20:18",
-		"destroy" : "dkh 12/11/2015 14:28",
+		"destroy" : "dkh 12/15/2015 11:48",
 		"encrypt:from:to:into:" : "dkh 12/03/2015 16:18",
 		"isConnected" : "dkh 12/11/2015 14:24",
 		"secureSocket" : "dkh 12/02/2015 16:31",

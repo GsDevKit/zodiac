@@ -1,0 +1,21 @@
+{
+	"class" : {
+		"newTCP" : "dkh 12/02/2015 15:03" },
+	"instance" : {
+		"closeAndDestroy" : "dkh 12/01/2015 14:03",
+		"connectTo:port:waitForConnectionFor:" : "dkh 12/02/2015 15:30",
+		"dataAvailable" : "dkh 12/02/2015 15:32",
+		"isValid" : "dkh 12/01/2015 14:03",
+		"listenOn:backlogSize:" : "dkh 12/01/2015 20:04",
+		"localPort" : "dkh 12/01/2015 14:03",
+		"readInto:startingAt:for:" : "dkh 12/02/2015 15:42",
+		"readyForRead" : "dkh 12/02/2015 15:32",
+		"receiveDataSignallingTimeout:into:startingAt:" : "dkh 12/02/2015 15:36",
+		"sendData:count:" : "dkh 12/02/2015 15:33",
+		"sendSomeData:startIndex:count:" : "dkh 12/01/2015 14:35",
+		"waitForAcceptFor:" : "dkh 12/01/2015 19:37",
+		"waitForConnectionFor:ifTimedOut:" : "dkh 12/01/2015 20:07",
+		"waitForDataFor:" : "dkh 12/02/2015 15:36",
+		"waitForDataFor:ifClosed:ifTimedOut:" : "dkh 12/02/2015 15:39",
+		"waitForNonBlockingReadActivityUpToMs:" : "dkh 12/02/2015 15:40",
+		"writeFrom:startingAt:for:" : "dkh 12/01/2015 20:05" } }

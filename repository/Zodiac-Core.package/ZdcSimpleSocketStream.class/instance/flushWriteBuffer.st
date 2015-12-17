@@ -7,4 +7,4 @@ flushWriteBuffer
 		flushBytes: writeBuffer buffer
 		startingAt: writeBuffer contentsStart
 		count: writeBuffer availableForReading. 
-	writeBuffer reset 
+	writeBuffer reset

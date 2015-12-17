@@ -1,0 +1,317 @@
+TDScriptLeafNode{#name:'exampleSingleGem',#contents:'[ :topez :objIn :tokens :command :commandNode | 
+  | opts args |
+  \"for help: ./exampleSingleGem -h\"
+  command
+    getOptsMixedLongShort:
+      {#(\'help\' $h #\'none\').
+      #(\'past\' nil #\'none\')}
+    optionsAndArguments: [ :options :operands | 
+      opts := options.
+      args := operands ].
+  opts
+    at: \'help\'
+    ifAbsent: [ 
+      | portNum readPastEnd |
+      portNum := 57785.
+      opts
+        at: \'past\'
+        ifPresent: [ :ignored | readPastEnd := true ]
+        ifAbsent: [ readPastEnd := false ].
+      [ 
+      | listener sslServer failBlock classFailBlock bigStr result data dataSizeString |
+      failBlock := [ :sock :shouldLog | 
+      | err arr |
+      err := sock fetchLastIoErrorString.
+      err
+        ifNotNil: [ 
+          Transcript
+            cr;
+            show: err ].
+      arr := sock class fetchErrorStringArray.
+      1 to: arr size do: [ :n | 
+        Transcript
+          cr;
+          show: (arr at: n) ].
+      sock close.
+      SocketError signal: err asString ].
+      classFailBlock := [ :aClass :shouldLog | 
+      | arr |
+      arr := aClass fetchErrorStringArray.
+      1 to: arr size do: [ :n | 
+        Transcript
+          cr;
+          show: (arr at: n) ].
+      SocketError signal: \'Primitive failed\' ].\t\"Specify the certificate and private key to use for all server connections in
+ this gem.  Both must be in PEM format.  Private key and certificate may be
+ contained in the same PEM file, as we show here. This private key does not
+ need a passphrase, so we use nil as the last argument.\"
+      (GsSecureSocket
+        useServerCertificateFile: \'$GEMSTONE/examples/openssl/certs/server.pem\'
+        withPrivateKeyFile: \'$GEMSTONE/examples/openssl/certs/server.pem\'
+        privateKeyPassphrase: nil)
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'useServerCertificateFile failed.\'.
+          classFailBlock value: GsSecureSocket value: nil ].\t\"Don\'t request a certificate from the client.  This is typical.\"
+      GsSecureSocket disableCertificateVerificationOnServer.\t\"Use all ciphers except NULL ciphers and anonymous Diffie-Hellman
+ and sort by strength.\"
+      (GsSecureSocket setServerCipherListFromString: \'ALL:!ADH:@STRENGTH\')
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'setServerCipherListFromString: failed\' ].\t\"All class methods have been executed, so now we can create the instance.
+ Class methods executed AFTER the instance is created will NOT APPLY to
+ the instance!\"\t\"Create a new SSL server socket.\"
+      listener := GsSecureSocket newServer.\t\"Make it listen for the client.\"
+      (listener makeServerAtPort: portNum)
+        ifNil: [ 
+          | err |
+          err := listener lastErrorString.
+          listener close.
+          SocketError signal: \'makeServerAtPort failed, \' , err asString ].
+      listener port == portNum
+        ifFalse: [ listener halt: \'bad port number\' ].
+      Transcript
+        cr;
+        show: \'Waiting for GsSecureSocket clientExample to connect...\'.
+      [ listener readWillNotBlockWithin: 5000 ]
+        whileFalse: [ 
+          Transcript
+            cr;
+            show: \'waiting...\' ].
+      Transcript
+        cr;
+        show: \'Client connected\'.\t\"Do the normal accept to establish a standard socket connection.\"\t\"sslServer is our connection to the client.\"
+      sslServer := listener accept.
+      sslServer
+        ifNil: [ 
+          | err |
+          err := listener lastErrorString.
+          listener close.
+          SocketError signal: \'accept failed, \' , err asString ].
+      Transcript
+        cr;
+        show: \'Normal accept completed OK.\'.\t\"uncomment next to put the socket in blocking mode.\"\t\"sslServer makeBlocking.\"\t\"sslServer has only a normal connection to the peer.  If will have a secure
+  connection if secureAccept succeeds.\"
+      sslServer secureAccept
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'Secure connection established.\' ]
+        ifFalse: [ 
+          | certError |
+          Transcript
+            cr;
+            show: \'secureAccept failed.\'.
+          certError := sslServer class
+            fetchLastCertificateVerificationErrorForServer.
+          certError
+            ifNil: [ 
+              Transcript
+                cr;
+                show:
+                    \'nil result from fetchLastCertificateVerificationErrorForServer\' ]
+            ifNotNil: [ 
+              Transcript
+                cr;
+                show: \'Cert error: =>\' , certError ].
+          failBlock value: sslServer value: nil ].\t\"If we get here, we have a secure connection to the client.\"
+      Transcript
+        cr;
+        show: \'Current cipher in use is: \' , sslServer fetchCipherDescription.\t\"Build data to send\"
+      data := Array new.
+      4096 timesRepeat: [ data add: (String withAll: \'0123456789ABCDEF\') ].
+      bigStr := String new.
+      PassiveObject passivate: data toStream: (WriteStream on: bigStr).
+      dataSizeString := bigStr size asHexStringWithLength: 8.
+      dataSizeString size > 8
+        ifTrue: [ 
+          UserDefinedError
+            signal: \'Protocol Error, attempt to send more than 4294967295 bytes\' ].
+      Transcript
+        cr;
+        show:
+            \'Sending data length to client: \' , bigStr size asString , \' bytes, encoded as \'
+                , dataSizeString.
+      result := sslServer write: dataSizeString.
+      result == dataSizeString size
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'Finished sending length to peer\' ]
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'write of length bytes failed, result was \' , result asString.
+          failBlock value: sslServer value: nil ].
+      Transcript
+        cr;
+        show: \'Sending \' , bigStr size asString , \' bytes to client\'.
+      result := sslServer write: bigStr.
+      result == bigStr size
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'Finished sending \' , bigStr size asString , \' bytes to peer\' ]
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'write failed, result was \' , result asString.
+          failBlock value: sslServer value: nil ].\t\"close method will close the SSL connection and underlying socket.\"
+      sslServer close.
+      listener close ]
+        fork.
+      Processor yield.
+      [ 
+      | sslClient failBlock bytesRead dataBuffer dataLength data |
+      failBlock := [ :sock :shouldLog | 
+      | err arr |
+      err := sock fetchLastIoErrorString.
+      err
+        ifNotNil: [ 
+          Transcript
+            cr;
+            show: err ].
+      arr := sock class fetchErrorStringArray.
+      1 to: arr size do: [ :n | 
+        Transcript
+          cr;
+          show: (arr at: n) ].
+      sock close.
+      SocketError signal: err asString ].\t\"Setup a normal socket connection first.\"\t\"Create an new SSL client socket\"
+      sslClient := GsSecureSocket newClient.\t\"Now connect to the server to get a normal socket connection.\"
+      (sslClient connectTo: portNum)
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'regular socket connect completed OK.\' ]
+        ifFalse: [ 
+          sslClient close.
+          sslClient
+            halt:
+              \'Unable to connect to port \' , portNum asString
+                ,
+                  \'. Wait 30 seconds or so, then ensure serverExample is started first.\' ].\t\"uncomment next line to put the socket in blocking mode.\"\t\"sslClient makeBlocking.\"\t\"Specify the file which contains a list of trusted CA certificates.
+ These will be used to validate the certificate presented by the peer
+ during the SSL handshake.  The file must be in PEM format.\"
+      (GsSecureSocket
+        useCACertificateFileForClients:
+          \'$GEMSTONE/examples/openssl/certs/serverCA.pem\')
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'useCACertificateFileForClients failed\' ].\t\"Tell SSL that all clients are to drop the connection unless
+ the certificate presented by the server is authenticated.\"
+      GsSecureSocket enableCertificateVerificationOnClient.\t\"Set the cipher list for client SSL sockets.
+ Use all ciphers except NULL ciphers and anonymous Diffie-Hellman
+ and sort by strength.\"
+      (GsSecureSocket setClientCipherListFromString: \'ALL:!ADH:@STRENGTH\')
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'setClientCipherListFromString: failed\' ].\t\"Attempt to establish a secure connection to the SSL server...\"
+      sslClient secureConnect
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'Secure connection established\' ]
+        ifFalse: [ 
+          | certError |
+          Transcript
+            cr;
+            show: \'secureConnect failed\'.
+          certError := GsSecureSocket
+            fetchLastCertificateVerificationErrorForClient.
+          certError
+            ifNil: [ 
+              Transcript
+                cr;
+                show:
+                    \'nil result from fetchLastCertificateVerificationErrorForClient\' ]
+            ifNotNil: [ 
+              Transcript
+                cr;
+                show: \'Cert error: =>\' , certError ].
+          failBlock value: sslClient value: nil ].\t\"We have a secure connection to the server if we get here.\"
+      Transcript
+        cr;
+        show: \'Current cipher in use is: \' , sslClient fetchCipherDescription.\t\"Read length from the client\"
+      Transcript
+        cr;
+        show: \'Starting read\'.
+      dataLength := sslClient read: 8.
+      (dataLength isNil or: [ dataLength size < 8 ])
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'read of 8 bytes of length failed\'.
+          failBlock value: sslClient value: nil ]
+        ifFalse: [ 
+          Transcript
+            cr;
+            show: \'read 8 bytes of length, encoded \' , dataLength ].
+      dataLength := Integer fromHexString: dataLength.
+      Transcript
+        cr;
+        show: \'Data length should be \' , dataLength asString.
+      dataBuffer := String new.
+      [ dataBuffer size < dataLength ]
+        whileTrue: [ 
+          bytesRead := sslClient
+            read: 16384
+            into: dataBuffer
+            startingAt: dataBuffer size + 1.
+          (bytesRead isNil or: [ bytesRead = 0 ])
+            ifTrue: [ 
+              Transcript
+                cr;
+                show: \'read failed\'.
+              failBlock value: sslClient value: nil ]
+            ifFalse: [ 
+              Transcript
+                cr;
+                show: \'Read \' , bytesRead asString , \' bytes from peer.\' ] ].
+      dataBuffer size ~= dataLength
+        ifTrue: [ 
+          Transcript
+            cr;
+            show: \'Read failed \'.
+          failBlock value: sslClient value: nil ].
+      Transcript
+        cr;
+        show:
+            \'Finished reading, read \' , dataBuffer size asString , \' bytes from peer\'.
+      readPastEnd
+        ifTrue: [ 
+          | buf amt |
+          buf := String new.
+          amt := sslClient read: 10 into: buf startingAt: buf size + 1.
+          self halt ].
+      sslClient close.
+      data := (PassiveObject newWithContents: dataBuffer) activate.
+      Transcript
+        cr;
+        show:
+            \'Result is \' , data class asString , \' of size \' , data size asString.
+      ]
+        value ]
+    ifPresent: [ :ignored | 
+      TDManPage
+        viewManPage:
+          \'NAME
+  exampleSingleGem - exampleSingleGem script utility template
+SYNOPSIS
+  exampleSingleGem [-h|--help] [--past]
+DESCRIPTION
+  Single gem implementation of GsSecureSocket client/server example.
+
+  With the --past option set, the code will attempt to read after expected byte count.
+
+EXAMPLES
+  ./exampleSingleGem --help
+  ./exampleSingleGem -h
+
+  ./exampleSingleGem --past
+\'
+        topez: topez ] ]',#creationTime:DateAndTime['2015-12-02T14:10:20.21150207519531-08:00'],#modificationTime:DateAndTime['2015-12-04T11:22:36.83810901641846-08:00']}

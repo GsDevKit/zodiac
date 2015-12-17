@@ -7,4 +7,4 @@ advanceReadPointer: count
 		ifTrue: [  
 			readPointer := readPointer + count ]
 		ifFalse: [
-			self bufferEmptyError ]  
+			self bufferEmptyError ]

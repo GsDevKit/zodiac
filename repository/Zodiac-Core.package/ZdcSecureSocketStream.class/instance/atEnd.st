@@ -8,10 +8,10 @@ atEnd
     ifFalse: [ ^ false ].
   socket notNil
     ifTrue: [ 
-      "Try reading (there might stil be data in the SSL session) and test again"
-      [ self fillReadBufferNoWait ]
-        on: ConnectionClosed
-        do: [ :ex | ^ true ].
+      | readCount |
+      readCount := self fillReadBufferNoWait.
+      readCount = 0
+        ifTrue: [ ^ true ].
       readBuffer isEmpty
         ifFalse: [ ^ false ] ].
   ^ self isConnected not

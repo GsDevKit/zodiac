@@ -19,31 +19,10 @@ baseline: spec
   spec
     for: #'gemstone'
     do: [ 
+      "GemStone 3.3 and beyond"
       spec
         package: 'Zodiac-GemStone-Core' with: [ spec requires: 'Zodiac-Core' ];
         yourself.
       spec
         group: 'Core' with: #('Zodiac-GemStone-Core');
-        yourself ].
-  spec
-    for: #'gs3.2.x'
-    do: [ 
-      "patch for 3.2 until at least 3.2.12 or later"
-      spec
-        package: 'Zodiac-GemStone32x-Core'
-          with: [ spec requires: 'Zodiac-GemStone-Core' ];
-        yourself.
-      spec
-        group: 'Core' with: #('Zodiac-GemStone32x-Core');
-        yourself ].
-  spec
-    for: #'gs3.3.x'
-    do: [ 
-      "short term patch for 3.3"
-      spec
-        package: 'Zodiac-GemStone32x-Core'
-          with: [ spec requires: 'Zodiac-GemStone-Core' ];
-        yourself.
-      spec
-        group: 'Core' with: #('Zodiac-GemStone32x-Core');
         yourself ]

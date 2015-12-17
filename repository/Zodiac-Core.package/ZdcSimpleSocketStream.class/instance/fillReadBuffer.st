@@ -6,4 +6,4 @@ fillReadBuffer
 	(readBuffer isEmpty and: [ self isConnected ])
 		ifTrue: [ 
 			self socketWaitForData. "when successful, recurse, else signal exception"
-			self fillReadBuffer ]
+			self fillReadBuffer ]  

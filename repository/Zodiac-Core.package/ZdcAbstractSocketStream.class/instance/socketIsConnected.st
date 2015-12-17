@@ -1,3 +1,3 @@
 private socket
 socketIsConnected
-  ^ self socket isConnected
+	^ socket isConnected

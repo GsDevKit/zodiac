@@ -1,3 +1,4 @@
 private socket
 socketWaitForData
-  ^ self socket waitForDataFor: self timeout
+	^ socket waitForDataFor: self timeout
+	

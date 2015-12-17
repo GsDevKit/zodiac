@@ -1,3 +1,3 @@
 private socket
 socketIsDataAvailable
-  ^ self socket dataAvailable
+	^ socket dataAvailable 

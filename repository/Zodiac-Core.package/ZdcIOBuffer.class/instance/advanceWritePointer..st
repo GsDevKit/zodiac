@@ -7,4 +7,4 @@ advanceWritePointer: count
 		ifTrue: [  
 			writePointer := writePointer + count ]
 		ifFalse: [
-			self bufferFullError ]
+			self bufferFullError ]  

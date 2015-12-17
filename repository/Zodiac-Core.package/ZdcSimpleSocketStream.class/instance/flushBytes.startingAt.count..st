@@ -3,7 +3,7 @@ flushBytes: bytes startingAt: offset count: count
 	"Ask the socket to write count bytes starting from offset. Wait. Fail if not successful"
 	
 	| writeCount |
-	count = 0 ifTrue: [ ^ self ].
+	count = 0 ifTrue: [ self ].
 	socket ifNil: [ ConnectionClosed signal: 'Cannot write data' ].  
 	writeCount := 0.
 	[ | written |

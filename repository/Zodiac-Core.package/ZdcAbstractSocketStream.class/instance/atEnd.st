@@ -5,4 +5,4 @@ atEnd
 	there must be no more unread data available at the socket,
 	and the socket must be closed"
 	
-	^ self subclassResponsibility 
+	^ self subclassResponsibility

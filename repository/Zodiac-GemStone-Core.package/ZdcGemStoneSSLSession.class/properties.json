@@ -1,0 +1,14 @@
+{
+	"category" : "Zodiac-GemStone-Core",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"secureSocket" ],
+	"name" : "ZdcGemStoneSSLSession",
+	"pools" : [
+		 ],
+	"super" : "ZdcAbstractSSLSession",
+	"type" : "normal" }

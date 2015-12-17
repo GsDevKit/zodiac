@@ -16,4 +16,13 @@ baseline: spec
         group: 'Tests' with: #('Zodiac-Tests');
         yourself ].
   spec for: #'pharo' do: [  ].
-  spec for: #'gemstone' do: [  ]
+  spec
+    for: #'gemstone'
+    do: [ 
+      "GemStone 3.3 and beyond"
+      spec
+        package: 'Zodiac-GemStone-Core' with: [ spec requires: 'Zodiac-Core' ];
+        yourself.
+      spec
+        group: 'Core' with: #('Zodiac-GemStone-Core');
+        yourself ]

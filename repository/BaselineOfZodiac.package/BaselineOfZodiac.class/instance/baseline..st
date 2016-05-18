@@ -14,6 +14,7 @@ baseline: spec
         group: 'Core' with: #('Zodiac-Core');
         group: 'Extras' with: #('Zodiac-Extra');
         group: 'Tests' with: #('Zodiac-Tests');
+        group: 'CI' with: #('default' 'Tests');
         yourself ].
   spec for: #'pharo' do: [  ].
   spec

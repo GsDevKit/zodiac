@@ -7,10 +7,5 @@ SmalltalkCISpec {
       #onWarningLog : true,
       #platforms : [ #gemstone ]
     }
-  ],
-  #testing : {
-    #include : {
-      #classes : [ #SentButNotImplementedTest, #UndefinedSymbolsTest ]
-    }
-  }
+  ]
 }

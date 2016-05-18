@@ -42,7 +42,7 @@
 		"socketReceiveDataInto:startingAt:count:" : "dkh 12/16/2015 15:48",
 		"socketSendData:startingAt:count:" : "dkh 12/16/2015 15:48",
 		"socketWaitForData" : "dkh 12/16/2015 15:48",
-		"socketWaitForSendDone" : "dkh 12/16/2015 15:48",
+		"socketWaitForSendDone" : "dkh 05/18/2016 14:22",
 		"timeout" : "SvenVanCaekenberghe 5/17/2011 18:52",
 		"timeout:" : "SvenVanCaekenberghe 5/17/2011 18:52",
 		"upTo:" : "SvenVanCaekenberghe 5/17/2011 18:52",

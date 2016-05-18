@@ -1,0 +1,16 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Zodiac',
+      #load : [ 'CI' ],
+      #directory : 'repository',
+      #onWarningLog : true,
+      #platforms : [ #gemstone ]
+    }
+  ],
+  #testing : {
+    #include : {
+      #classes : [ #SentButNotImplementedTest, #UndefinedSymbolsTest ]
+    }
+  }
+}

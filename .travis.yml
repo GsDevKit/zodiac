@@ -1,0 +1,11 @@
+language: smalltalk
+sudo: false
+
+os: linux
+
+smalltalk:
+  - GemStone-3.3.0
+
+cache:
+  directories:
+    - $SMALLTALK_CI_CACHE

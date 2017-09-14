@@ -18,7 +18,7 @@ baseline: spec
         yourself ].
   spec for: #'pharo' do: [  ].
   spec
-    for: #(#'gs3.3.x' #'gs3.4.x')
+    for: #(#'gs3.3.x' #'gs3.4.x' #'gs3.5.x' #'gs3.6.x')
     do: [ 
       spec
         package: 'Zodiac-GemStone-Core' with: [ spec requires: 'Zodiac-Core' ];

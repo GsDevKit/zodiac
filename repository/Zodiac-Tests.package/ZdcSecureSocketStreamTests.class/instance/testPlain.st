@@ -1,8 +1,8 @@
 tests
 testPlain
   | query stream request response |
-  query := 'Smalltalk'.
   GsSecureSocket disableCertificateVerificationOnClient.
+  query := 'Smalltalk'.
   stream := ZdcSecureSocketStream
     openConnectionToHostNamed: 'encrypted.google.com'
     port: 443.

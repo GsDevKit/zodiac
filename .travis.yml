@@ -4,7 +4,8 @@ sudo: false
 os: linux
 
 smalltalk:
-  - GemStone-3.3.0
+  - GemStone-3.3.9
+  - GemStone-3.4.3
 
 cache:
   directories:

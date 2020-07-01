@@ -5,8 +5,12 @@ os: linux
 
 smalltalk:
   - GemStone-3.3.9
-  - GemStone-3.4.3
+  - GemStone-3.4.5
+  - GemStone-3.5.2
 
 cache:
   directories:
     - $SMALLTALK_CI_CACHE
+
+notifications:
+  slack: gemtalksystems:4YWbzy6sJN9cE0FhxvUPP8nS

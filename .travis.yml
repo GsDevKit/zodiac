@@ -5,7 +5,8 @@ os: linux
 
 smalltalk:
   - GemStone-3.3.9
-  - GemStone-3.4.3
+  - GemStone-3.4.5
+  - GemStone-3.5.2
 
 cache:
   directories:

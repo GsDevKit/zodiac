@@ -1,4 +1,4 @@
-# Zodiac TLS/SSL  [![Build Status](https://travis-ci.org/GsDevKit/zodiac.svg?branch=gs_master)](https://travis-ci.org/GsDevKit/zodiac)
+I# Zodiac TLS/SSL  [![Build Status](https://github.com/GsDevKit/zodiac/actions/workflows/ci.yml/badge.svg?branch=gs_master)](https://github.com/GsDevKit/zodiac/actions/workflows/ci.yml)
 
 Zodiac is an open-source, cross-smalltalk implementation of regular and secure socket streams. 
 The primary goal of the project is to offer TLS/SSL streams that can then be used to implement 

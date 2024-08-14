@@ -3,14 +3,13 @@ name: smalltalkCI
 on: 
   push:
   pull_request:
-    branches:
-      gs_master
   schedule:
     - cron: "15 2 12 * *" #run job on the 12th day of every month on the 15th minute of the 2nd hour
 
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: [ ubuntu-20.04 ]
         smalltalk: [ GemStone64-3.7.1, GemStone64-3.6.8, GemStone64-3.5.8 ]
@@ -21,7 +20,7 @@ jobs:
             os: macos-12
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: hpi-swa/setup-smalltalkCI@v1
         with:
           smalltalk-image: ${{ matrix.smalltalk }}

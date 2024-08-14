@@ -15,3 +15,4 @@ for example HTTPS when combined with a suitable client such as Zinc HTTP Compone
 
 
 [MIT Licensed](https://github.com/svenvc/zodiac/blob/master/license.txt)
+
